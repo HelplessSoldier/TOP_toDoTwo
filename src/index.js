@@ -6,14 +6,14 @@ import TodoItem from "./modules/todoData/todoItem";
 import DisplayTools from "./modules/display/display";
 import CreateTodo from "./modules/userInput/createTodo";
 
-const root = document.getElementById("content");
-const display = new DisplayTools(root);
+const domRoot = document.getElementById("content");
+const display = new DisplayTools(domRoot);
 const folders = new FolderContainer();
 const defaultFolder = new Folder("Main");
 const secondFolder = new Folder("second");
 const item1 = new TodoItem("item1", "2077/24/23", 3);
 const item2 = new TodoItem("item2", "1776/12/12", 2);
-const createTodoDialogue = new CreateTodo(root);
+const createTodoDialogue = new CreateTodo(domRoot);
 
 createTodoDialogue.createItemDialogue();
 
@@ -21,6 +21,7 @@ folders.addFolder(defaultFolder);
 folders.addFolder(secondFolder);
 defaultFolder.addItem(item1);
 defaultFolder.addItem(item2);
+// defaultFolder.removeItem(item1);
 
 display.folders(folders);
 display.items(defaultFolder);

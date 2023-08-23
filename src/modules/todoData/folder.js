@@ -10,11 +10,7 @@ class Folder {
         this.name = newName;
     }
     removeItem(itemToRemove) {
-        for (let item in this.items) {
-            if (item === itemToRemove) {
-                this.items.splice(item, 1);
-            }
-        }
+        this.items = this.items.filter((item) => item !== itemToRemove);
     }
     addItem(itemToAdd) {
         this.items.push(itemToAdd);
