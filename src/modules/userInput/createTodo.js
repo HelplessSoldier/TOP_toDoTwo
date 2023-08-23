@@ -56,7 +56,11 @@ function radioPair(tag) {
     const label = createElement("label", { for: `${tag}Radio`, class: "radioLabel" }, `${tag}`);
     const radioButton = createElement(
         "input",
-        { type: "radio", name: "priority", id: `radio${tag}` },
+        {
+            type: "radio",
+            name: "priority",
+            id: `radio${tag}`,
+        },
         ""
     );
     container.append(label, radioButton);

@@ -13,8 +13,9 @@ class DisplayTools {
         }
     }
     items(folder) {
+        const todoElements = createElement("div", { id: "todoElements" }, "");
         for (let todoElement of folder.items) {
-            const container = createElement("div", { class: "todoElementContainer" }, "");
+            const todoElementContainer = createElement("div", { class: "todoElement" }, "");
             const Title = createElement("p", { class: "todoElementTitle" }, todoElement.getTitle());
             const DueDate = createElement(
                 "p",
@@ -26,9 +27,10 @@ class DisplayTools {
                 { class: "todoElementPriority" },
                 todoElement.getPriority()
             );
-            container.append(Title, DueDate, priority);
-            this.parent.append(container);
+            todoElementContainer.append(Title, DueDate, priority);
+            todoElements.append(todoElementContainer);
         }
+        this.parent.append(todoElements);
     }
 }
 

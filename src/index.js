@@ -9,14 +9,14 @@ const display = new DisplayTools(root);
 const folders = new FolderContainer();
 const defaultFolder = new Folder("Main");
 const item1 = new TodoItem("item1", "2077/24/23", 3);
+const item2 = new TodoItem("item2", "1776/12/12", 2);
 const createTodoDialogue = new CreateTodo(root);
 
 createTodoDialogue.createItemDialogue();
 
-item1.changePriority(2);
-
 folders.addFolder(defaultFolder);
 defaultFolder.addItem(item1);
+defaultFolder.addItem(item2);
 
 display.folders(folders);
 display.items(defaultFolder);
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     submitButton.addEventListener("click", () => {
         if (titleInput.value && dueDateInput.value) {
-            const dueDate = new Date(dueDateInput.value); // Convert input value to Date object
+            const dueDate = new Date(dueDateInput.value);
             const currentDate = new Date();
 
             if (dueDate > currentDate) {
@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 console.log("Due date must be in the future.");
             }
+            // create new element from inputs
         }
     });
     closeButton.addEventListener("click", () => {
