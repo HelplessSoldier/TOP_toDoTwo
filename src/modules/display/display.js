@@ -5,12 +5,14 @@ class DisplayTools {
         this.parent = parent;
     }
     folders(folderContainerList) {
+        const folderContainer = createElement("div", { id: "folders" }, "");
         for (let folder of folderContainerList.folders) {
             const folderElement = createElement("div", { class: "folderContainers" }, "");
             const folderTitle = createElement("p", { class: "folderTitles" }, folder.getName());
             folderElement.append(folderTitle);
-            this.parent.append(folderElement);
+            folderContainer.append(folderElement);
         }
+        this.parent.append(folderContainer);
     }
     items(folder) {
         const todoElements = createElement("div", { id: "todoElements" }, "");

@@ -17,6 +17,7 @@
     --primary-color: #b83d14;
     --secondary-color: #0e0e0e;
     --accent-color: #ca4316;
+    font-family: "Inter";
 }
 
 [data-theme="light"] {
