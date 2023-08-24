@@ -6,6 +6,7 @@ import DisplayTools from "./modules/display/display";
 import CreateTodo from "./modules/userInput/createTodo";
 import CreateFolderDialogue from "./modules/userInput/createFolder";
 import { updateLocalStorage, retrieveItemsFromLocalStorage } from "./modules/helpers/LocalStorage";
+import RemoveFolderDialogue from "./modules/userInput/removeFolderCheck";
 
 const domRoot = document.getElementById("content");
 const display = new DisplayTools(domRoot);
@@ -29,6 +30,14 @@ createFolderContainer.style.display = "none";
 newFolderButton.addEventListener("click", () => {
     createFolderContainer.style.display = "block";
 });
+
+// setup are you sure folder dialogue box
+const areYouSure = new RemoveFolderDialogue(domRoot);
+areYouSure.openRemoveFolderDialogue();
+const areYouSureContainer = document.getElementById("areYouSureContainer");
+const areYouSureSubmitButton = document.getElementById("areYouSureConfirmButton");
+const areYouSureCancelButton = document.getElementById("areYouSureCancelButton");
+areYouSureContainer.style.display = "none";
 
 // add folders and todo items to dom
 display.folders(folders);
@@ -85,6 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
             updateLocalStorage(folders);
         }
     });
+
     // add folder if name filled
     // then update folders on site
     folderSubmitButton.addEventListener("click", () => {
@@ -103,10 +113,12 @@ document.addEventListener("DOMContentLoaded", () => {
     todoCloseButton.addEventListener("click", () => {
         createItemContainer.style.display = "none";
     });
+
     // hide folder dialogue when close button pressed
     folderCloseButton.addEventListener("click", () => {
         createFolderContainer.style.display = "none";
     });
+
     // update todo items when asked
     document.addEventListener("updateTodoItems", () => {
         todoElementContainer.remove();
@@ -114,6 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
         todoElementContainer = document.getElementById("todoElements");
         updateLocalStorage(folders);
     });
+
     // change currentFolder when folder title clicked
     // then update todo items to fit the new folder
     document.addEventListener("folderClicked", (e) => {
@@ -121,5 +134,26 @@ document.addEventListener("DOMContentLoaded", () => {
         todoElementContainer.remove();
         display.items(currentFolder);
         todoElementContainer = document.getElementById("todoElements");
+    });
+
+    // bring up 'are you sure' dialogue when remove folder button clicked
+    document.addEventListener("removeFolderButtonClicked", (e) => {
+        let folderToRemove = e.detail;
+        areYouSureContainer.style.display = "block";
+        // close dialogue if user selects cancel
+        areYouSureCancelButton.addEventListener("click", () => {
+            folderToRemove = null;
+            areYouSureContainer.style.display = "none";
+        });
+        // remove the folder and update display/local storage if the user selects yes
+        areYouSureSubmitButton.addEventListener("click", () => {
+            folders.removeFolder(folderToRemove);
+            folderElementContainer.remove();
+            display.folders(folders);
+            folderElementContainer = document.getElementById("folders");
+            areYouSureContainer.style.display = "none";
+            currentFolder = folders.getFirstFolder();
+            updateLocalStorage(folders);
+        });
     });
 });

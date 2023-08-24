@@ -6,10 +6,9 @@ class FolderContainer {
         this.folders.push(folderToAdd);
     }
     removeFolder(folderToRemove) {
-        for (let folder of this.folders) {
-            if (folder === folderToRemove) {
-                this.folders.splice(folder, 1);
-            }
+        const index = this.folders.indexOf(folderToRemove);
+        if (index !== -1) {
+            this.folders.splice(index, 1);
         }
     }
     getFirstFolder() {
