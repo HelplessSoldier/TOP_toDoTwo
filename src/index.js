@@ -50,12 +50,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const priorityInputLow = document.getElementById("radioLow");
     const todoSubmitButton = document.getElementById("todoSubmitButton");
     const todoCloseButton = document.getElementById("todoCloseButton");
+    let todoElementContainer = document.getElementById("todoElements");
 
     // folder inputs
     const folderTextInput = document.getElementById("createFolderTextInput");
     const folderSubmitButton = document.getElementById("createFolderSubmitButton");
     const folderCloseButton = document.getElementById("folderCloseButton");
-    let todoElementContainer = document.getElementById("todoElements");
+    let folderElementContainer = document.getElementById("folders");
 
     // add todo item if fields filled and make sense
     todoSubmitButton.addEventListener("click", () => {
@@ -89,12 +90,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
     // add folder if name filled
+    // then update folders on site
     folderSubmitButton.addEventListener("click", () => {
         const newFolderName = folderTextInput.value;
         if (newFolderName) {
             let itemToAdd = new Folder(newFolderName);
             folders.addFolder(itemToAdd);
         }
+        folderElementContainer.remove();
+        display.folders(folders);
+        folderElementContainer = document.getElementById("folders");
     });
 
     // hide item dialogue when close button pressed
@@ -118,6 +123,5 @@ document.addEventListener("DOMContentLoaded", () => {
         todoElementContainer.remove();
         display.items(currentFolder);
         todoElementContainer = document.getElementById("todoElements");
-        console.log(`folderClicked, currentFolder is ${currentFolder.name}`);
     });
 });
