@@ -1,4 +1,5 @@
 import createElement from "../helpers/createElement";
+import dispatchEvent from "../helpers/updateTodoEvent";
 
 class DisplayTools {
     constructor(parent) {
@@ -29,7 +30,13 @@ class DisplayTools {
                 { class: "todoElementPriority" },
                 todoElement.getPriority()
             );
-            todoElementContainer.append(Title, DueDate, priority);
+            const removeButton = createElement("button", { class: "removeItemButton" }, "Remove");
+            removeButton.addEventListener("click", () => {
+                folder.removeItem(todoElement);
+                dispatchEvent("updateTodoItems");
+            });
+
+            todoElementContainer.append(Title, DueDate, priority, removeButton);
             todoElements.append(todoElementContainer);
         }
         this.parent.append(todoElements);
