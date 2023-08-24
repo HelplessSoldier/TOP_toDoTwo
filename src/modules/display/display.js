@@ -10,7 +10,7 @@ class DisplayTools {
         for (let folder of folderContainerList.folders) {
             const folderElement = createElement("div", { class: "folderContainers" }, "");
             const folderTitle = createElement("p", { class: "folderTitles" }, folder.getName());
-            folderTitle.addEventListener("click", () => {
+            folderElement.addEventListener("click", () => {
                 dispatchEvent("folderClicked", folder);
             });
             const removeButton = createElement("button", { class: "removeFolderButton" }, "Delete");

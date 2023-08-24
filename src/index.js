@@ -75,34 +75,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // ensure due date makes sense
             if (dueDate < currentDate) {
+                alert("Due Date cannot be in the past.");
                 console.log("Due date must be in the future.");
-            } else {
+            } else if (dueDate > currentDate) {
                 // get priority value from radio buttons
                 if (priorityInputHigh.checked) {
-                    priority = 3;
+                    priority = "High";
                 } else if (priorityInputMed.checked) {
-                    priority = 2;
+                    priority = "Medium";
                 } else if (priorityInputLow.checked) {
-                    priority = 1;
+                    priority = "Low";
                 }
+                let newItemTitle = titleInput.value;
+                let newItemDueDate = dueDateInput.value;
+                let newItem = new TodoItem(newItemTitle, newItemDueDate, priority);
+                currentFolder.addItem(newItem);
+
+                // display change
+                todoElementContainer.remove();
+                display.items(currentFolder);
+                todoElementContainer = document.getElementById("todoElements");
+                updateLocalStorage(folders);
+
+                // reset input fields
+                titleInput.value = "";
+                dueDateInput.value = null;
+                priorityInputHigh.checked = false;
+                priorityInputMed.checked = false;
+                priorityInputLow.checked = false;
             }
-            let newItemTitle = titleInput.value;
-            let newItemDueDate = dueDateInput.value;
-            let newItem = new TodoItem(newItemTitle, newItemDueDate, priority);
-            currentFolder.addItem(newItem);
-
-            // display change
-            todoElementContainer.remove();
-            display.items(currentFolder);
-            todoElementContainer = document.getElementById("todoElements");
-            updateLocalStorage(folders);
-
-            // reset input fields
-            titleInput.value = "";
-            dueDateInput.value = null;
-            priorityInputHigh.checked = false;
-            priorityInputMed.checked = false;
-            priorityInputLow.checked = false;
         }
     });
 

@@ -29,7 +29,7 @@ class CreateTodo {
         const radioHigh = radioPair("High");
         const radioMid = radioPair("Med");
         const radioLow = radioPair("Low");
-        radioContainer.append(radioHigh, radioMid, radioLow);
+        radioContainer.append(priorityInputLabel, radioHigh, radioMid, radioLow);
 
         // submitButton and closeButton
         const buttonContainer = createElement("div", { class: "buttonContainer" }, "");
@@ -42,7 +42,6 @@ class CreateTodo {
             titleInput,
             dueDateInputLabel,
             dueDateInput,
-            priorityInputLabel,
             radioContainer,
             buttonContainer
         );

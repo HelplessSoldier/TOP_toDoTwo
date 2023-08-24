@@ -55,8 +55,8 @@ button:hover {
     width: 100vw;
     height: 100vh;
     display: grid;
-    grid-template-columns: 1fr 6fr;
-    grid-template-rows: 1fr 8fr;
+    grid-template-columns: 1fr 1fr 5fr;
+    grid-template-rows: 1fr 14fr;
 }
 
 #createItemContainer,
@@ -75,10 +75,10 @@ button:hover {
 #areYouSureContainer::before {
     content: "";
     position: absolute;
-    top: -10px;
-    right: -10px;
-    bottom: -10px;
-    left: -10px;
+    top: -20px;
+    right: -20px;
+    bottom: -20px;
+    left: -20px;
     z-index: -1;
     background-color: var(--background-color);
     border: 3px solid var(--accent-color);
@@ -87,20 +87,31 @@ button:hover {
 
 /* todo stuff */
 #todoElements {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(10, 1fr);
+    margin-top: 10px;
     grid-row: 2;
-    grid-column: 2;
-    gap: 10px;
+    grid-column: 2 / span 2;
+    gap: 2px;
+    overflow: scroll;
 }
 
 .todoElement {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     margin: 10px;
     border: 3px solid var(--accent-color);
     border-radius: 10px;
+    flex-grow: 0;
 }
 
-.todoElement > * {
-    margin: 20px;
+.todoElementTitle {
+    font-size: large;
+    font-weight: 900;
+    margin: 10px;
 }
 
 /* folders */
@@ -109,8 +120,9 @@ button:hover {
     flex-direction: column;
     grid-row: 2;
     grid-column: 1;
-    margin-top: 10px;
+    margin-top: 35px;
     gap: 5px;
+    overflow: scroll;
 }
 
 .folderContainers {
@@ -134,7 +146,8 @@ button:hover {
 }
 
 #createFolderTextInput,
-#titleInput {
+#titleInput,
+#dueDateInput {
     margin: 10px;
     padding: 10px;
     border-radius: 8px;
@@ -150,4 +163,33 @@ button:hover {
     margin: 10px;
     justify-content: center;
     align-items: center;
+}
+
+.radioContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
+
+.radioContainer > input[type="radio"] {
+    margin-left: 10px;
+}
+
+.radioContainer > label {
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* new items and folders button */
+#openNewItemDialogueButton,
+#newFolderDialogueButton {
+    font-size: larger;
 }
