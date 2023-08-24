@@ -1,5 +1,5 @@
 import createElement from "../helpers/createElement";
-import dispatchEvent from "../helpers/updateTodoEvent";
+import dispatchEvent from "../helpers/dispatchEvent";
 
 class DisplayTools {
     constructor(parent) {
@@ -10,6 +10,9 @@ class DisplayTools {
         for (let folder of folderContainerList.folders) {
             const folderElement = createElement("div", { class: "folderContainers" }, "");
             const folderTitle = createElement("p", { class: "folderTitles" }, folder.getName());
+            folderTitle.addEventListener("click", () => {
+                dispatchEvent("folderClicked", folder);
+            });
             folderElement.append(folderTitle);
             folderContainer.append(folderElement);
         }

@@ -33,8 +33,8 @@ class CreateTodo {
 
         // submitButton and closeButton
         const buttonContainer = createElement("div", { class: "buttonContainer" }, "");
-        const submitButton = createElement("button", { id: "submitButton" }, "Submit");
-        const closeButton = createElement("button", { id: "closeButton" }, "Close");
+        const submitButton = createElement("button", { id: "todoSubmitButton" }, "Submit");
+        const closeButton = createElement("button", { id: "todoCloseButton" }, "Close");
         buttonContainer.append(submitButton, closeButton);
 
         container.append(
