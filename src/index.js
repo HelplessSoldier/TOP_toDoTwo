@@ -1,19 +1,16 @@
 import "./style.css";
 
-import FolderContainer from "./modules/todoData/folderContainer";
 import Folder from "./modules/todoData/folder";
 import TodoItem from "./modules/todoData/todoItem";
 import DisplayTools from "./modules/display/display";
 import CreateTodo from "./modules/userInput/createTodo";
 import CreateFolderDialogue from "./modules/userInput/createFolder";
+import { updateLocalStorage, retrieveItemsFromLocalStorage } from "./modules/helpers/LocalStorage";
 
 const domRoot = document.getElementById("content");
 const display = new DisplayTools(domRoot);
-const folders = new FolderContainer();
-const defaultFolder = new Folder("Main");
-const defaultTodo = new TodoItem("default entry", "2077/12/22", 2);
-defaultFolder.addItem(defaultTodo);
-let currentFolder = defaultFolder;
+const folders = retrieveItemsFromLocalStorage();
+let currentFolder = folders.getFirstFolder();
 
 // open new item dialogue on new item button press
 const createTodo = new CreateTodo(domRoot);
@@ -33,13 +30,11 @@ newFolderButton.addEventListener("click", () => {
     createFolderContainer.style.display = "block";
 });
 
-// throwing stuff on page to test //
-folders.addFolder(defaultFolder);
-
+// add folders and todo items to dom
 display.folders(folders);
 display.items(currentFolder);
-// -------------------------------//
 
+// wait for dom to be populated before attempting to select any elements
 document.addEventListener("DOMContentLoaded", () => {
     // todo inputs
     const createItemContainer = document.getElementById("createItemContainer");
@@ -87,6 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
             todoElementContainer.remove();
             display.items(currentFolder);
             todoElementContainer = document.getElementById("todoElements");
+            updateLocalStorage(folders);
         }
     });
     // add folder if name filled
@@ -100,6 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
         folderElementContainer.remove();
         display.folders(folders);
         folderElementContainer = document.getElementById("folders");
+        updateLocalStorage(folders);
     });
 
     // hide item dialogue when close button pressed
@@ -115,6 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
         todoElementContainer.remove();
         display.items(currentFolder);
         todoElementContainer = document.getElementById("todoElements");
+        updateLocalStorage(folders);
     });
     // change currentFolder when folder title clicked
     // then update todo items to fit the new folder

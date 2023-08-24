@@ -12,6 +12,9 @@ class FolderContainer {
             }
         }
     }
+    getFirstFolder() {
+        return this.folders[0];
+    }
 }
 
 export default FolderContainer;
