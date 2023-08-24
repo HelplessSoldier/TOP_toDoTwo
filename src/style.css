@@ -20,11 +20,3 @@
     --secondary-color: #ebebeb;
     --accent-color: #ca4316;
 }
-
-.todoElement {
-    border: 1px solid orange;
-}
-
-.folderContainers {
-    border: 1px solid blue;
-}

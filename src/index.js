@@ -92,6 +92,13 @@ document.addEventListener("DOMContentLoaded", () => {
             display.items(currentFolder);
             todoElementContainer = document.getElementById("todoElements");
             updateLocalStorage(folders);
+
+            // reset input fields
+            titleInput.value = "";
+            dueDateInput.value = null;
+            priorityInputHigh.checked = false;
+            priorityInputMed.checked = false;
+            priorityInputLow.checked = false;
         }
     });
 
@@ -103,9 +110,13 @@ document.addEventListener("DOMContentLoaded", () => {
             let itemToAdd = new Folder(newFolderName);
             folders.addFolder(itemToAdd);
         }
+        // hacky, but solves a lot of errors
+        currentFolder = folders.getFirstFolder();
+        // ------------------------------------
         folderElementContainer.remove();
         display.folders(folders);
         folderElementContainer = document.getElementById("folders");
+        folderTextInput.value = "";
         updateLocalStorage(folders);
     });
 
@@ -153,6 +164,9 @@ document.addEventListener("DOMContentLoaded", () => {
             folderElementContainer = document.getElementById("folders");
             areYouSureContainer.style.display = "none";
             currentFolder = folders.getFirstFolder();
+            folderElementContainer.remove();
+            display.folders(folders);
+            folderElementContainer = document.getElementById("folders");
             updateLocalStorage(folders);
         });
     });

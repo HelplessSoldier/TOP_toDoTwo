@@ -23,40 +23,30 @@ class DisplayTools {
         this.parent.append(folderContainer);
     }
     items(folder) {
-        if (folder.items.length > 0) {
-            const todoElements = createElement("div", { id: "todoElements" }, "");
-            for (let todoElement of folder.items) {
-                const todoElementContainer = createElement("div", { class: "todoElement" }, "");
-                const Title = createElement(
-                    "p",
-                    { class: "todoElementTitle" },
-                    todoElement.getTitle()
-                );
-                const DueDate = createElement(
-                    "p",
-                    { class: "todoElementDueDate" },
-                    todoElement.getDueDate()
-                );
-                const priority = createElement(
-                    "p",
-                    { class: "todoElementPriority" },
-                    todoElement.getPriority()
-                );
-                const removeButton = createElement(
-                    "button",
-                    { class: "removeItemButton" },
-                    "Remove"
-                );
-                removeButton.addEventListener("click", () => {
-                    folder.removeItem(todoElement);
-                    dispatchEvent("updateTodoItems");
-                });
+        const todoElements = createElement("div", { id: "todoElements" }, "");
+        for (let todoElement of folder.items) {
+            const todoElementContainer = createElement("div", { class: "todoElement" }, "");
+            const Title = createElement("p", { class: "todoElementTitle" }, todoElement.getTitle());
+            const DueDate = createElement(
+                "p",
+                { class: "todoElementDueDate" },
+                todoElement.getDueDate()
+            );
+            const priority = createElement(
+                "p",
+                { class: "todoElementPriority" },
+                todoElement.getPriority()
+            );
+            const removeButton = createElement("button", { class: "removeItemButton" }, "Remove");
+            removeButton.addEventListener("click", () => {
+                folder.removeItem(todoElement);
+                dispatchEvent("updateTodoItems");
+            });
 
-                todoElementContainer.append(Title, DueDate, priority, removeButton);
-                todoElements.append(todoElementContainer);
-            }
-            this.parent.append(todoElements);
+            todoElementContainer.append(Title, DueDate, priority, removeButton);
+            todoElements.append(todoElementContainer);
         }
+        this.parent.append(todoElements);
     }
 }
 
