@@ -20,6 +20,8 @@ createTodo.createItemDialogue();
 createItemContainer.style.display = "none";
 openNewItemDialogueButton.addEventListener("click", () => {
     createItemContainer.style.display = "block";
+    createFolderContainer.style.display = "none";
+    areYouSureContainer.style.display = "none";
 });
 
 // open new folder dialogue on new folder button press
@@ -29,6 +31,8 @@ createFolder.createFolderDialogue();
 createFolderContainer.style.display = "none";
 newFolderButton.addEventListener("click", () => {
     createFolderContainer.style.display = "block";
+    createItemContainer.style.display = "none";
+    areYouSureContainer.style.display = "none";
 });
 
 // setup are you sure folder dialogue box
@@ -151,6 +155,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener("removeFolderButtonClicked", (e) => {
         let folderToRemove = e.detail;
         areYouSureContainer.style.display = "block";
+        createFolderContainer.style.display = "none";
+        createItemContainer.style.display = "none";
         // close dialogue if user selects cancel
         areYouSureCancelButton.addEventListener("click", () => {
             folderToRemove = null;
