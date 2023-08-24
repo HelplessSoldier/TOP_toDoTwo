@@ -127,6 +127,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // hide item dialogue when close button pressed
     todoCloseButton.addEventListener("click", () => {
         createItemContainer.style.display = "none";
+        // reset input fields
+        titleInput.value = "";
+        dueDateInput.value = null;
+        priorityInputHigh.checked = false;
+        priorityInputMed.checked = false;
+        priorityInputLow.checked = false;
     });
 
     // hide folder dialogue when close button pressed
