@@ -90,28 +90,32 @@ button:hover {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: repeat(10, 1fr);
-    margin-top: 10px;
     grid-row: 2;
     grid-column: 2 / span 2;
+    background-color: var(--secondary-color);
     gap: 2px;
     overflow: scroll;
+    padding: 10px;
 }
 
 .todoElement {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 8fr 2fr 1fr 1fr;
+    justify-content: right;
     align-items: center;
     margin: 10px;
-    border: 3px solid var(--accent-color);
+    border-left: 3px solid var(--accent-color);
     border-radius: 10px;
+    background-color: var(--background-color);
     flex-grow: 0;
+    gap: 10px;
 }
 
 .todoElementTitle {
     font-size: large;
     font-weight: 900;
     margin: 10px;
+    margin-left: 20px;
 }
 
 /* folders */
@@ -120,7 +124,7 @@ button:hover {
     flex-direction: column;
     grid-row: 2;
     grid-column: 1;
-    margin-top: 35px;
+    padding-top: 20px;
     gap: 5px;
     overflow: scroll;
 }
@@ -192,4 +196,25 @@ button:hover {
 #openNewItemDialogueButton,
 #newFolderDialogueButton {
     font-size: larger;
+    margin: 10px;
+}
+
+#topBarContainer {
+    grid-column: 1 / span 3;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    border-bottom: 1px solid var(--accent-color);
+}
+
+.logoText {
+    grid-column: 1;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    font-size: 50px;
+    letter-spacing: 5px;
+}
+
+#newFolderDialogueButton {
+    grid-column: 4;
 }

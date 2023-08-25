@@ -79,11 +79,11 @@ document.addEventListener("DOMContentLoaded", () => {
             } else if (dueDate > currentDate) {
                 // get priority value from radio buttons
                 if (priorityInputHigh.checked) {
-                    priority = "High";
+                    priority = "H";
                 } else if (priorityInputMed.checked) {
-                    priority = "Medium";
+                    priority = "M";
                 } else if (priorityInputLow.checked) {
-                    priority = "Low";
+                    priority = "L";
                 }
 
                 // create and add new item to the selected folder

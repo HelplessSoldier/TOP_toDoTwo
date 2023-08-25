@@ -14,7 +14,24 @@ class DisplayTools {
             folderElement.addEventListener("click", () => {
                 dispatchEvent("folderClicked", folder);
             });
-            const removeButton = createElement("button", { class: "removeFolderButton" }, "Delete");
+
+            // remove button for each folder, X svg
+            const removeButton = createElement("div", { class: "removeButtonSvg" }, "");
+            const svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svgElement.setAttribute("width", "40px");
+            svgElement.setAttribute("height", "40px");
+            svgElement.setAttribute("viewBox", "0 0 24 24");
+
+            const pathElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            pathElement.setAttribute("d", "M7 7.00006L17 17.0001M7 17.0001L17 7.00006");
+            pathElement.setAttribute("stroke", "#b83d14");
+            pathElement.setAttribute("stroke-width", "2.5");
+            pathElement.setAttribute("stroke-linecap", "round");
+            pathElement.setAttribute("stroke-linejoin", "round");
+
+            svgElement.appendChild(pathElement);
+            removeButton.appendChild(svgElement);
+
             removeButton.addEventListener("click", () => {
                 dispatchEvent("removeFolderButtonClicked", folder);
             });
@@ -39,7 +56,22 @@ class DisplayTools {
                 { class: "todoElementPriority" },
                 todoElement.getPriority()
             );
-            const removeButton = createElement("button", { class: "removeItemButton" }, "Remove");
+            const removeButton = createElement("div", { class: "removeButtonSvg" }, "");
+            const svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+            svgElement.setAttribute("width", "40px");
+            svgElement.setAttribute("height", "40px");
+            svgElement.setAttribute("viewBox", "0 0 24 24");
+
+            const pathElement = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            pathElement.setAttribute("d", "M7 7.00006L17 17.0001M7 17.0001L17 7.00006");
+            pathElement.setAttribute("stroke", "#b83d14");
+            pathElement.setAttribute("stroke-width", "2.5");
+            pathElement.setAttribute("stroke-linecap", "round");
+            pathElement.setAttribute("stroke-linejoin", "round");
+
+            svgElement.appendChild(pathElement);
+            removeButton.appendChild(svgElement);
+
             removeButton.addEventListener("click", () => {
                 folder.removeItem(todoElement);
                 dispatchEvent("updateTodoItems");

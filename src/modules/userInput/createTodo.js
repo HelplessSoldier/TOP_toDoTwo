@@ -7,13 +7,12 @@ class CreateTodo {
     createItemDialogue() {
         const container = createElement("div", { id: "createItemContainer" }, "");
 
-        // title input field and tag
-        const titleInputLabel = createElement(
-            "label",
-            { class: "InputLabel", for: "titleInput" },
-            "Title: "
-        );
-        const titleInput = createElement("input", { id: "titleInput", type: "text" });
+        // title input field
+        const titleInput = createElement("input", {
+            id: "titleInput",
+            type: "text",
+            placeholder: "TODO: ",
+        });
 
         // due date input field and tag
         const dueDateInputLabel = createElement(
@@ -38,7 +37,6 @@ class CreateTodo {
         buttonContainer.append(submitButton, closeButton);
 
         container.append(
-            titleInputLabel,
             titleInput,
             dueDateInputLabel,
             dueDateInput,

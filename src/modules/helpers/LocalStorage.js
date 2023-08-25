@@ -37,7 +37,7 @@ function _defaultData() {
     // for first load or if local storage cleared
     const folderContainer = new FolderContainer();
     const folder = new Folder("Main");
-    const todoItem = new TodoItem("Default item", "2077/11/11", 3);
+    const todoItem = new TodoItem("Default item", "2077-11-11", "H");
     folder.addItem(todoItem);
     folderContainer.addFolder(folder);
     return folderContainer;
