@@ -128,10 +128,15 @@ button:hover {
     justify-content: space-between;
     align-items: center;
     border: 1px solid transparent;
+    min-height: 40px;
 }
 
 .folderContainers:hover {
     background-color: var(--secondary-color);
+    border: 1px solid var(--accent-color);
+}
+
+.folderContainers.selected {
     border: 1px solid var(--accent-color);
 }
 

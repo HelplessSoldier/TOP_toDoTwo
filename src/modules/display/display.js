@@ -13,6 +13,7 @@ class DisplayTools {
             const folderTitle = createElement("p", { class: "folderTitles" }, folder.getName());
             folderElement.addEventListener("click", () => {
                 dispatchEvent("folderClicked", folder);
+                folderElement.classList.add("selected");
             });
 
             // remove button for each folder, except for main

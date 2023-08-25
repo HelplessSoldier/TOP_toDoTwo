@@ -153,6 +153,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // change currentFolder when folder title clicked
     // then update todo items to fit the new folder
     document.addEventListener("folderClicked", (e) => {
+        // remove selected class from folders children
+        const folderElements = folderElementContainer.querySelectorAll(".folderContainers");
+        folderElements.forEach((element) => {
+            element.classList.remove("selected");
+        });
+
         currentFolder = e.detail;
         todoElementContainer.remove();
         display.items(currentFolder);
