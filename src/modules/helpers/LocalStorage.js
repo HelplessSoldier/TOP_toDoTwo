@@ -3,12 +3,14 @@ import FolderContainer from "../todoData/folderContainer";
 import TodoItem from "../todoData/todoItem";
 
 function updateLocalStorage(folders) {
+    // creates a json from the data's root point then saves to local storage
     const foldersJSON = JSON.stringify(folders);
     console.log(foldersJSON);
     localStorage.setItem("foldersData", foldersJSON);
 }
 
 function retrieveItemsFromLocalStorage() {
+    // creates folders and todo items from the json, then returns their root element
     const storedFoldersJSON = localStorage.getItem("foldersData");
     const storedFolders = JSON.parse(storedFoldersJSON);
     if (storedFolders) {
@@ -27,11 +29,12 @@ function retrieveItemsFromLocalStorage() {
         }
         return folderContainer;
     } else {
-        return defaultData();
+        return _defaultData();
     }
 }
 
-function defaultData() {
+function _defaultData() {
+    // for first load or if local storage cleared
     const folderContainer = new FolderContainer();
     const folder = new Folder("Main");
     const todoItem = new TodoItem("Default item", "2077/11/11", 3);

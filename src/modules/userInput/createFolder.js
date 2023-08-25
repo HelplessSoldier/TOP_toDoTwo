@@ -5,6 +5,7 @@ class CreateFolderDialogue {
         this.parent = parent;
     }
     createFolderDialogue() {
+        // creates the popup window that shows when 'new folder' clicked
         const container = createElement("div", { id: "createFolderContainer" }, "");
         const textInput = createElement("input", { type: "text", id: "createFolderTextInput" }, "");
         const submitButton = createElement("button", { id: "createFolderSubmitButton" }, "Submit");

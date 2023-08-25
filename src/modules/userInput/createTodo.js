@@ -51,6 +51,7 @@ class CreateTodo {
 }
 
 function radioPair(tag) {
+    // create a label / radio button pair and return it. just a helper
     const container = createElement("div", { class: "radioContainer" }, "");
     const label = createElement("label", { for: `${tag}Radio`, class: "radioLabel" }, `${tag}`);
     const radioButton = createElement(

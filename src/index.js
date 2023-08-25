@@ -35,7 +35,7 @@ newFolderButton.addEventListener("click", () => {
     areYouSureContainer.style.display = "none";
 });
 
-// setup are you sure folder dialogue box
+// open are you sure folder dialogue box
 const areYouSure = new RemoveFolderDialogue(domRoot);
 areYouSure.openRemoveFolderDialogue();
 const areYouSureContainer = document.getElementById("areYouSureContainer");
@@ -76,7 +76,6 @@ document.addEventListener("DOMContentLoaded", () => {
             // ensure due date makes sense
             if (dueDate < currentDate) {
                 alert("Due Date cannot be in the past.");
-                console.log("Due date must be in the future.");
             } else if (dueDate > currentDate) {
                 // get priority value from radio buttons
                 if (priorityInputHigh.checked) {
@@ -86,6 +85,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 } else if (priorityInputLow.checked) {
                     priority = "Low";
                 }
+
+                // create and add new item to the selected folder
                 let newItemTitle = titleInput.value;
                 let newItemDueDate = dueDateInput.value;
                 let newItem = new TodoItem(newItemTitle, newItemDueDate, priority);
@@ -164,22 +165,30 @@ document.addEventListener("DOMContentLoaded", () => {
         areYouSureContainer.style.display = "block";
         createFolderContainer.style.display = "none";
         createItemContainer.style.display = "none";
-        // close dialogue if user selects cancel
+
+        // de-select folderToRemove to avoid deleting folder accidentally
+        // then close dialogue if user selects cancel
         areYouSureCancelButton.addEventListener("click", () => {
             folderToRemove = null;
             areYouSureContainer.style.display = "none";
         });
+
         // remove the folder and update display/local storage if the user selects yes
         areYouSureSubmitButton.addEventListener("click", () => {
             folders.removeFolder(folderToRemove);
+
+            // re render folders on sidebar
             folderElementContainer.remove();
             display.folders(folders);
             folderElementContainer = document.getElementById("folders");
+
+            // hide are you sure box
             areYouSureContainer.style.display = "none";
+
+            // to ensure a folder is selected
             currentFolder = folders.getFirstFolder();
-            folderElementContainer.remove();
-            display.folders(folders);
-            folderElementContainer = document.getElementById("folders");
+
+            // apply change to todoData.json
             updateLocalStorage(folders);
         });
     });

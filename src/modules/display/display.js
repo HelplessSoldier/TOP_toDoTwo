@@ -6,6 +6,7 @@ class DisplayTools {
         this.parent = parent;
     }
     folders(folderContainerList) {
+        // created dom items for the folders sidebar
         const folderContainer = createElement("div", { id: "folders" }, "");
         for (let folder of folderContainerList.folders) {
             const folderElement = createElement("div", { class: "folderContainers" }, "");
@@ -23,6 +24,7 @@ class DisplayTools {
         this.parent.append(folderContainer);
     }
     items(folder) {
+        // creates dom items for the todo items within a folder
         const todoElements = createElement("div", { id: "todoElements" }, "");
         for (let todoElement of folder.items) {
             const todoElementContainer = createElement("div", { class: "todoElement" }, "");
