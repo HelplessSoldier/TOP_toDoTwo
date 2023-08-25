@@ -49,9 +49,20 @@ class DisplayTools {
     items(folder) {
         console.log(folder.name);
         // creates dom items for the todo items within a folder
+
         const todoElements = createElement("div", { id: "todoElements" }, "");
         for (let todoElement of folder.items) {
-            const todoElementContainer = createElement("div", { class: "todoElement" }, "");
+
+            let priorityColorClass;
+            if (todoElement.getPriority() === 'H') {
+                priorityColorClass = 'priorityColorClassHigh';
+            } else if (todoElement.getPriority() === 'M') {
+                priorityColorClass = 'priorityColorClassMid';
+            } else if (todoElement.getPriority() === 'L') {
+                priorityColorClass = 'priorityColorClassLow';
+            }
+
+            const todoElementContainer = createElement("div", { class: `todoElement ${priorityColorClass}` }, "");
             const Title = createElement("p", { class: "todoElementTitle" }, todoElement.getTitle());
             const DueDate = createElement(
                 "p",
@@ -87,7 +98,7 @@ class DisplayTools {
                 dispatchEvent("updateTodoItems");
             });
 
-            todoElementContainer.append(Title, DueDate, priority, removeButton);
+            todoElementContainer.append(Title, DueDate, removeButton);
             todoElements.append(todoElementContainer);
         }
         this.parent.append(todoElements);
