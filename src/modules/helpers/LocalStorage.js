@@ -37,9 +37,17 @@ function _defaultData() {
     // for first load or if local storage cleared
     const folderContainer = new FolderContainer();
     const folder = new Folder("Main");
-    const todoItem = new TodoItem("Default item", "2077-11-11", "H");
-    folder.addItem(todoItem);
+
+    const todoItemH = new TodoItem("High Priority", "2077-11-11", "H");
+    const todoItemM = new TodoItem("Medium Priority", "2077-11-12", "M");
+    const todoItemL = new TodoItem("Low Priority", "2077-11-13", "L");
+
+    folder.addItem(todoItemH);
+    folder.addItem(todoItemM);
+    folder.addItem(todoItemL);
+
     folderContainer.addFolder(folder);
+
     return folderContainer;
 }
 

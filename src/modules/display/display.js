@@ -52,27 +52,25 @@ class DisplayTools {
 
         const todoElements = createElement("div", { id: "todoElements" }, "");
         for (let todoElement of folder.items) {
-
             let priorityColorClass;
-            if (todoElement.getPriority() === 'H') {
-                priorityColorClass = 'priorityColorClassHigh';
-            } else if (todoElement.getPriority() === 'M') {
-                priorityColorClass = 'priorityColorClassMid';
-            } else if (todoElement.getPriority() === 'L') {
-                priorityColorClass = 'priorityColorClassLow';
+            if (todoElement.getPriority() === "H") {
+                priorityColorClass = "priorityColorClassHigh";
+            } else if (todoElement.getPriority() === "M") {
+                priorityColorClass = "priorityColorClassMid";
+            } else if (todoElement.getPriority() === "L") {
+                priorityColorClass = "priorityColorClassLow";
             }
+            const todoElementContainer = createElement(
+                "div",
+                { class: `todoElement ${priorityColorClass}` },
+                ""
+            );
 
-            const todoElementContainer = createElement("div", { class: `todoElement ${priorityColorClass}` }, "");
             const Title = createElement("p", { class: "todoElementTitle" }, todoElement.getTitle());
             const DueDate = createElement(
                 "p",
                 { class: "todoElementDueDate" },
                 todoElement.getDueDate()
-            );
-            const priority = createElement(
-                "p",
-                { class: "todoElementPriority" },
-                todoElement.getPriority()
             );
 
             // remove button for each item
