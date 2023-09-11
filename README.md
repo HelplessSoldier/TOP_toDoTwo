@@ -1,3 +1,3 @@
 # TOP_toDoTwo
 
-First attempt was garbage, retrying.
+second attempt at the odin projects todo list project. hosted at https://helplesssoldier.github.io/todoHost/
