@@ -17,11 +17,11 @@ class DisplayTools {
             });
 
             // remove button for each folder, except for main
-            // X svg hardcoded because i was having problems importing
-            // don't allow main to be deleted, was having errors when no folder existed
             const removeButtonContainer = createElement("div", { id: "removeButtonContainer" }, "");
+            // don't allow main to be deleted, was having errors when no folder existed
             if (folder.name !== "Main") {
                 const removeButton = createElement("div", { class: "removeButtonSvg" }, "");
+                // X svg hardcoded because i was having problems importing
                 const svgElement = document.createElementNS("http://www.w3.org/2000/svg", "svg");
                 svgElement.setAttribute("width", "40px");
                 svgElement.setAttribute("height", "40px");
